@@ -6,6 +6,14 @@ public class File {
 	private boolean isFile;
 	private double size;
 	
+	public File() {
+		this.isFile = true;
+	}
+	
+	public File(boolean is_File) {
+		this.isFile = is_File;
+	}
+	
 	public String getName() {
 		return name;
 	}
