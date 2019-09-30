@@ -119,8 +119,46 @@ public class TreeUtilsTests {
 		tree.addChild(child1, file);
 		tree.addChild(child1, file3);
 		tree.addChild(child1, file4);
+		assertEquals("String da árvore partindo da raiz",    "Trabalho do leanderson.pdf-Trabalho do edson.pdf-Trabalho do paulo.pdf-Trabalho do cidral.pdf-Trabalho-C:/-", TreeUtils.toStringPostOrder(tree, root));
+		//assertEquals("String da árvore partindo do filho 1", "C:/, Trabalho, Trabalho do leanderson.pdf", TreeUtils.toStringPostOrder(tree, child1));
+	}
 	
-		assertEquals("String da árvore partindo da raiz",    "C:/, Trabalho, Trabalho do leanderson.pdf, Trabalho do leanderson.pdf, Trabalho do paulo.pdf, Trabalho do cidral.pdf", TreeUtils.toStringPostOrder(tree, root));
+	@Test
+	public void teste() {
+		Tree<File> tree = new Tree<>();
+		
+		File file0 = new File(false);
+		file0.setName("C:/");
+		file0.setSize(1.0);
+		
+		File file5 = new File(false);
+		file5.setName("Trabalho");
+		file5.setSize(1.0);
+		
+		File file = new File();
+		file.setName("Trabalho do edson.pdf");
+		file.setSize(2.0);
+		
+		File file2 = new File();
+		file2.setName("Trabalho do leanderson.pdf");
+		file2.setSize(2.0);
+		
+		File file3 = new File();
+		file3.setName("Trabalho do paulo.pdf");
+		file3.setSize(2.0);
+		
+		File file4 = new File();
+		file4.setName("Trabalho do cidral.pdf");
+		file4.setSize(2.0);
+		
+		Position<File> root = tree.addRoot(file0);
+		
+		Position<File> child1 = tree.addChild(root, file5);
+		tree.addChild(child1, file2);
+		tree.addChild(child1, file);
+		tree.addChild(child1, file3);
+		tree.addChild(child1, file4);
+		assertEquals("Tamanho total dos arquivos", 10.0, TreeUtils.calculateTotalSize(tree, root), 0.01);
 		//assertEquals("String da árvore partindo do filho 1", "C:/, Trabalho, Trabalho do leanderson.pdf", TreeUtils.toStringPostOrder(tree, child1));
 	}
 }
